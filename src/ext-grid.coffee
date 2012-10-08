@@ -1,7 +1,7 @@
 ExtBuilder = require('./ext-builder')
 
-class ExtGridBuilder extends ExtBuilder
-
-class ExtGrid
+class ExtGrid extends ExtBuilder
+    emit: () ->
+        return @schema
 
 module.exports = ExtGrid
