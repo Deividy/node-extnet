@@ -13,7 +13,7 @@ class Bootstrap
     _staticFiles = () ->
         (req, res, next) ->
             return file.serve(req, res) if (req.url.match('.*\\.(jpeg|jpg|png|css|js|gif|favicon|html|xml)'))
-    
+
     _initRouter = () ->
         require('./router')(app)
 

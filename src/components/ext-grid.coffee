@@ -8,8 +8,8 @@ class ExtGrid extends ExtBuilder
         for c in columns
             console.log(c)
 
-    emit: (req, res) ->     
-        @build()        
+    emit: (req, res) ->
+        @build()
         res.send(@content)
 
 module.exports = ExtGrid
