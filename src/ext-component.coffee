@@ -1,30 +1,36 @@
+_ = require('underscore')
+
 class ExtComponentManager
     components = []
+    requires = []
 
-    @components: () -> components
-
-    @add: (c) ->
+    # Setters
+    @register: (c) ->
         components.push(c)
+        return ExtComponentManager
 
-    @remove: (c) ->
+    @require: (c) ->
+        requires.push(c)
+        return ExtComponentManager
+
+    # Getters
+    @components: () ->
+        return components
+
+    @requires: () ->
+        return requires
 
 class ExtComponent
-
     constructor: (@data) ->
+        @isEmited = false
+        ExtComponentManager.register(@)
+
+    require: (c) ->
+        ExtComponentManager.require(c)
         return @
 
-    formatName: (n) ->
-        return n
-
-    formatField: (f) ->
-        return f
-
-    requires: () ->
-
     emit: () ->
-
-    register: () ->
-        ExtComponentManager.register(@)
+        @isEmited = true
 
 module.exports = {
     ExtComponent: ExtComponent
