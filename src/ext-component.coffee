@@ -9,8 +9,15 @@ class ExtComponentManager
     @remove: (c) ->
 
 class ExtComponent
+
     constructor: (@data) ->
         return @
+
+    formatName: (n) ->
+        return n
+
+    formatField: (f) ->
+        return f
 
     requires: () ->
 

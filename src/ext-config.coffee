@@ -1,8 +1,9 @@
 class ExtConfig
     @path = "lib"
-    @version = "ext-4.1.1a"
+    @version = "4.1.1a"
     @debug = false
     @includeAll = true
-    @getLibPath: () -> "#{ExtConfig.path}/#{ExtConfig.version}"
+
+    @getLibPath: () -> "#{ExtConfig.path}/ext-#{ExtConfig.version}"
 
 module.exports = ExtConfig
