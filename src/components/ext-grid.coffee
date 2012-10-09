@@ -1,15 +1,9 @@
-{ ExtBuilder, ExtComponent, addComponent } = require('./ext-builder')
+{ ExtComponent } = require('../ext-component')
 
-class ExtGrid extends ExtBuilder
+class ExtGrid extends ExtComponent
 
     build: () ->
-        super()
-        columns = @schema.columns
-        for c in columns
-            console.log(c)
 
-    emit: (req, res) ->
-        @build()
-        res.send(@content)
+    emit: () ->
 
 module.exports = ExtGrid

@@ -1,18 +1,25 @@
-class ExtComponent
+class ExtComponentManager
     components = []
-
-    @add: (c) ->
-        components.push(c)
-        return ExtComponent
-
-    @remove: (c) ->
 
     @components: () -> components
 
-    constructor: (@component) ->
+    @add: (c) ->
+        components.push(c)
+
+    @remove: (c) ->
+
+class ExtComponent
+    constructor: (@data) ->
         return @
 
-    render: () ->
-    
-    
-module.exports = ExtComponent
+    requires: () ->
+
+    emit: () ->
+
+    register: () ->
+        ExtComponentManager.register(@)
+
+module.exports = {
+    ExtComponent: ExtComponent
+    ExtComponentManager: ExtComponentManager
+}
