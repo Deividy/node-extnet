@@ -35,12 +35,12 @@ schema = {
 }
 values = [
     {
-        users_id: 1,
+        id: 1,
         login: 'test',
         pass: 123
     },
     {
-        users_id: 2,
+        id: 2,
         login: 'test2',
         pass: 234
     },

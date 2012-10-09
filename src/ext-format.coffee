@@ -1,3 +1,5 @@
+ExtConfig = require('./ext-config')
+
 class ExtFormat
 
     @f: (n) ->
@@ -17,5 +19,8 @@ class ExtFormat
 
     @type: (t) ->
         return t
+
+    @require: (r) ->
+        return "'#{r}'"
 
 module.exports = ExtFormat

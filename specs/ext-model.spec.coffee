@@ -2,9 +2,18 @@
 { ExtComponentManager, ExtComponent } = require('../src/ext-component')
 
 ExtModel = require('../src/components/ext-model')
+debug = false
 
 assertEmit = (ext, expected) ->
     ret = ext.emit()
+    if (debug)
+        console.log("--- Return ---")
+        console.log(ret)
+        console.log("---")
+        console.log("--- Expected ---")
+        console.log(expected)
+        console.log("---")
+
     ret.should.equal(expected)
 
 describe("Tests with ExtModel", () ->
@@ -23,6 +32,7 @@ describe("Tests with ExtModel", () ->
             });"
         assertEmit(extModel, e)
     )
+
     describe("Instance tests", () ->
         it("should be an instance of ExtComponent", () ->
             ExtComponentManager.components()[0].should.be.an.instanceOf(ExtComponent)
