@@ -1,4 +1,4 @@
-ExtGrid = require("./ext-grid")
+ExtGrid = require("./src/ext-grid")
 
 schema = {
     name: 'users',
@@ -39,5 +39,5 @@ schema = {
 module.exports = (app) ->
     grid = new ExtGrid(schema)
     app.get('/', (req, res) ->
-        res.send(grid.emit())
+        grid.emit(req, res)
     )
