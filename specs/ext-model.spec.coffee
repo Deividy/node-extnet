@@ -1,11 +1,12 @@
 { schema, values } = require('./values.coffee')
 { ExtComponentManager, ExtComponent } = require('../src/ext-component')
+ExtFormatter = require('../src/ext-formatter')
 
 ExtModel = require('../src/components/ext-model')
 debug = false
 
 assertEmit = (ext, expected) ->
-    ret = ext.emit()
+    ret = ext.emit(ExtFormatter)
     if (debug)
         console.log("--- Return ---")
         console.log(ret)

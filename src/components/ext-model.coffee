@@ -1,5 +1,5 @@
 { ExtComponent } = require('../ext-component')
-ExtFormat = require('../ext-format')
+
 
 class ExtModel extends ExtComponent
 
@@ -10,19 +10,15 @@ class ExtModel extends ExtComponent
         @fields = if (@data.columns) then @data.columns else []
         @name = if (@data.name) then @data.name else ""
 
-    emitFields: () ->
+    emitFields: (f) ->
         fields = []
         for c in @fields
-            fields.push(ExtFormat.field(c))
+            fields.push(f.field(c))
+
         return fields.join(', ')
 
-    emit: () ->
+    emit: (f) ->
         super()
-        return "Ext.define(#{ExtFormat.f(@name)}, {
-                extend: 'Ext.data.Model',
-                fields: [
-                    #{@emitFields()}
-                ]
-            });"
+        return f.emitModel(@)
 
 module.exports = ExtModel

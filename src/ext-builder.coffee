@@ -1,16 +1,15 @@
 { ExtComponentManager, ExtComponent } = require('./ext-component')
 ExtConfig = require('./ext-config')
-ExtFormat = require('./ext-format')
 
 class ExtBuilder
     constructor: (@schema) ->
 
-    emitRequires: () ->
+    emitRequires: (f) ->
         reqs = []
         for v in ExtComponentManager.requires()
-            reqs.push(ExtFormat.require(v))
+            reqs.push(v)
 
-        return "Ext.require([ #{reqs.join(", ")} ])"
+        return f.emitRequires(reqs)
 
     emitComponents: () ->
 
