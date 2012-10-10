@@ -23,12 +23,9 @@ class ExtFormatter
 
     @emitRequires: (reqs) ->
         throw new Error("Invalid requires #{reqs.toString()}") if (!_.isArray(reqs) )
-
-        req = _.reduce(reqs, (memo, val) -> "'#{memo}', '#{val}'") if (reqs.length > 1)
-        req = "'#{reqs[0]}'" if (reqs.length == 1)
-
-        return "Ext.require([ #{req} ])" if (req)
-        return ""
+        r = []
+        (r.push(i.emit()) for i in reqs)
+        return "Ext.require([ #{r.join(',')} ])"
 
     @emitModel: (context) ->
         return "Ext.define(#{ExtFormatter.f(context.name)}, {

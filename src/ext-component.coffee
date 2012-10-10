@@ -1,5 +1,11 @@
 _ = require('underscore')
 
+class ExtRequire
+    constructor: (@component) ->
+
+    emit: () ->
+        return "'#{@component}'"
+
 class ExtComponentManager
     components = []
     requires = []
@@ -10,15 +16,13 @@ class ExtComponentManager
         return ExtComponentManager
 
     @require: (c) ->
-        requires.push(c)
+        requires.push(new ExtRequire(c))
         return ExtComponentManager
 
     # Getters
-    @components: () ->
-        return components
+    @components: () -> components
 
-    @requires: () ->
-        return requires
+    @requires: () -> requires
 
 class ExtComponent
     constructor: (@data) ->
