@@ -1,11 +1,5 @@
 _ = require('underscore')
 
-class ExtRequire
-    constructor: (@component) ->
-
-    emit: () ->
-        return "'#{@component}'"
-
 class ExtComponentManager
     components = []
     requires = []
@@ -35,6 +29,14 @@ class ExtComponent
 
     emit: () ->
         @isEmited = true
+
+
+class ExtRequire extends ExtComponent
+    constructor: (@component) ->
+
+    emit: () ->
+        return "'#{@component}'"
+
 
 module.exports = {
     ExtComponent: ExtComponent
