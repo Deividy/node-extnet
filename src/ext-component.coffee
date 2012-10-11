@@ -18,6 +18,10 @@ class ExtComponentManager
 
     @requires: () -> requires
 
+    @clean: () ->
+        requires = []
+        components = []
+
 class ExtComponent
     constructor: (@data) ->
         @isEmited = false
