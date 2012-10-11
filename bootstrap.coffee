@@ -31,6 +31,7 @@ class Bootstrap
         )
 
     initHelpers: () ->
+        # HACK: Ugly code, need refactor
         app.locals.toString = (o) ->
             ret = o
             if (_.isArray(o))
@@ -39,7 +40,17 @@ class Bootstrap
                 ret += "]"
             else if(_.isObject(o))
                 ret = "{"
-                ret += (app.locals.toString(" #{k}:'#{i}' ") for k, i of o)
+                for k, i of o
+                    if (_.isObject(k))
+                        ret += app.locals.toString(k)
+                    else
+                        ret += " #{k}:"
+
+                    if (_.isObject(i))
+                        ret += app.locals.toString(i)
+                    else
+                        ret += " '#{i}' "
+                    ret += ','
                 ret += "}"
 
             return ret

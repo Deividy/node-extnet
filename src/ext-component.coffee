@@ -23,7 +23,7 @@ class ExtComponentManager
         components = []
 
 class ExtComponent
-    constructor: (@data) ->
+    constructor: (@name, @component) ->
         @isEmited = false
         ExtComponentManager.register(@)
 
@@ -33,7 +33,11 @@ class ExtComponent
 
     emit: () ->
         @isEmited = true
-
+        ret = {
+            name: @name,
+            component: @component
+        }
+        return ret
 
 class ExtRequire
     constructor: (@component) ->
