@@ -1,11 +1,14 @@
-ExtGrid = require("./src/components/ext-grid")
-ExtModel = require("./src/components/ext-model")
-ExtStore = require("./src/components/ext-grid")
+jade = require('jade')
+ExtModel = require('./src/components/ext-model')
+{ schema, values } = require('./specs/values.coffee')
 
 module.exports = (app) ->
-    grid = new ExtGrid(schema)
     app.get('/', (req, res) ->
-        grid.model(new ExtModel(schema.columns))
-        grid.store(new ExtStore(values))
-        res.send(grid.emit())
+        requires = ["'Ext.grid.*'", "'Ext.data.*'"]
+        components = [new ExtModel(schema).emit()]
+
+        res.render('layout', {
+            requires: requires,
+            components: components
+        })
     )

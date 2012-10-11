@@ -10,15 +10,19 @@ class ExtModel extends ExtComponent
         @fields = if (@data.columns) then @data.columns else []
         @name = if (@data.name) then @data.name else ""
 
-    emitFields: (f) ->
+    emitFields: () ->
         fields = []
         for c in @fields
-            fields.push(f.field(c))
+            fields.push({ name: c.name })
+        return fields
 
-        return fields.join(', ')
-
-    emit: (f) ->
+    emit: () ->
         super()
-        return f.emitModel(@)
+        ret = {
+            name: @name,
+            extend: 'Ext.data.Model',
+            fields: @emitFields()
+        }
+        return ret
 
 module.exports = ExtModel

@@ -1,4 +1,5 @@
 path = require('path')
+_ = require('underscore')
 express = require('express')
 node_static = require('node-static')
 
@@ -22,13 +23,30 @@ class Bootstrap
 
     initConfig: () ->
         app.configure(@env, () ->
+            app.set('views', "#{__dirname}/src/views")
+            app.set('view engine', 'jade')
             app.use(app.router)
             app.use(_staticFiles())
             app.use(express.bodyParser())
         )
 
+    initHelpers: () ->
+        app.locals.toString = (o) ->
+            ret = o
+            if (_.isArray(o))
+                ret = "["
+                ret += (app.locals.toString(i) for i in o)
+                ret += "]"
+            else if(_.isObject(o))
+                ret = "{"
+                ret += (app.locals.toString(" #{k}:'#{i}' ") for k, i of o)
+                ret += "}"
+
+            return ret
+
     run: () ->
         @initConfig()
+        @initHelpers()
         _initRouter()
 
         app.listen(@port)

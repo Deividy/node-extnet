@@ -8,11 +8,10 @@ class ExtFormatter
 
     @field: (f) ->
         throw new Error("Invalid field #{c.toString()}") if (!f.name?)
-        field = "{ "
-        field += "name: #{ExtFormatter.f(f.name)}"
-        field += ", type: #{ExtFormatter.f(f.type)}" if (f.type?)
-        field += ", defaultValue: #{ExtFormatter.f(f.default)}" if (f.default?)
-        field += " }"
+        field = {}
+        field.name = ExtFormatter.f(f.name)
+        field.type = ExtFormatter.f(f.type) if (f.type?)
+        field.defaultValue = ExtFormatter.f(f.default) if (f.default?)
         return field
 
     @value: (v) ->

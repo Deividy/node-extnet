@@ -1,0 +1,21 @@
+doctype 5
+html
+    head
+        title Testing..
+        link(rel='stylesheet', href='')
+        script(type='text/javascript', src='lib/ext-4.1.1a/ext-all.js')
+        script(type='text/javascript')
+            Ext.require([#{requires}])
+
+        each c in components
+            script(type='text/javascript')
+                Ext.define('#{c.name}', {
+                    extend: '#{c.extend}',
+                    fields: #{toString(c.fields)}
+                })
+
+         script(type='text/javascript')
+            Ext.onReady(function() {
+
+            })
+

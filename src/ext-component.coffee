@@ -31,7 +31,7 @@ class ExtComponent
         @isEmited = true
 
 
-class ExtRequire extends ExtComponent
+class ExtRequire
     constructor: (@component) ->
 
     emit: () ->
@@ -41,4 +41,5 @@ class ExtRequire extends ExtComponent
 module.exports = {
     ExtComponent: ExtComponent
     ExtComponentManager: ExtComponentManager
+    ExtRequire: ExtRequire
 }
