@@ -10,10 +10,11 @@ class ExtModel extends ExtComponent
         @fields = if (@data.columns) then @data.columns else []
         @name = if (@data.name) then @data.name else ""
 
+    use: () -> return "oi"
+
     emitFields: () ->
         fields = []
-        for c in @fields
-            fields.push({ name: c.name })
+        (fields.push({ name: c.name }) for c in @fields)
         return fields
 
     emit: () ->

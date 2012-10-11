@@ -4,6 +4,7 @@ ExtLoader = require('./ext-loade')
 
 class ExtBuilder
     constructor: (@schema) ->
+        ExtComponentManager.clean()
 
     emitRequire: () ->
         reqs = []

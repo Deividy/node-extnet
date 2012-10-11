@@ -7,15 +7,22 @@ html
         script(type='text/javascript')
             Ext.require([#{requires}])
 
+        -starter = ""
+
         each c in components
+            -starter = c.use()
+            -c = c.emit()
+
             script(type='text/javascript')
                 Ext.define('#{c.name}', {
                     extend: '#{c.extend}',
                     fields: #{toString(c.fields)}
                 })
 
+
+
          script(type='text/javascript')
             Ext.onReady(function() {
-
+                #{starter}
             })
 

@@ -6,15 +6,13 @@ ExtModel = require('./src/components/ext-model')
 module.exports = (app) ->
     app.get('/', (req, res) ->
         ExtComponentManager.clean()
-        requires = ""
 
         model = new ExtModel(schema)
-        components = [model.emit()]
-
-        requires += (i.emit() for i in ExtComponentManager.requires())
+        requires = []
+        (requires.push(i.emit()) for i in ExtComponentManager.requires())
 
         res.render('layout', {
-            requires: requires,
-            components: components
+            requires: requires.join(', '),
+            components: ExtComponentManager.components()
         })
     )
