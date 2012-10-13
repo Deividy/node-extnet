@@ -31,29 +31,6 @@ class Bootstrap
         )
 
     initHelpers: () ->
-        # HACK: Ugly code, need refactor
-        app.locals.toString = (o) ->
-            ret = o
-            if (_.isArray(o))
-                ret = "["
-                ret += (app.locals.toString(i) for i in o)
-                ret += "]"
-            else if(_.isObject(o))
-                ret = "{"
-                for k, i of o
-                    if (_.isObject(k))
-                        ret += app.locals.toString(k)
-                    else
-                        ret += " #{k}:"
-
-                    if (_.isObject(i))
-                        ret += app.locals.toString(i)
-                    else
-                        ret += " '#{i}' "
-                    ret += ','
-                ret += "}"
-
-            return ret
 
     run: () ->
         @initConfig()

@@ -4,7 +4,6 @@ class ExtComponentManager
     components = []
     requires = []
 
-    # Setters
     @register: (c) ->
         components.push(c)
         return ExtComponentManager
@@ -13,7 +12,6 @@ class ExtComponentManager
         requires.push(new ExtRequire(c))
         return ExtComponentManager
 
-    # Getters
     @components: () -> components
 
     @requires: () -> requires
@@ -23,7 +21,7 @@ class ExtComponentManager
         components = []
 
 class ExtComponent
-    constructor: (@name, @component) ->
+    constructor: (@options, @component) ->
         @isEmited = false
         ExtComponentManager.register(@)
 
@@ -33,11 +31,7 @@ class ExtComponent
 
     emit: () ->
         @isEmited = true
-        ret = {
-            name: @name,
-            component: @component
-        }
-        return ret
+        return  { options:@options, component: @component }
 
 class ExtRequire
     constructor: (@component) ->

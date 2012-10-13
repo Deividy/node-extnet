@@ -3,21 +3,11 @@
 
 class ExtModel extends ExtComponent
 
-    constructor: (@data) ->
+    constructor: (@schema) ->
         @require('Ext.data.*')
 
-        @fields = if (@data.columns) then @data.columns else []
-        @name = if (@data.name) then @data.name else ""
+        @fields = if (@schema.columns) then @schema.columns else []
+        @name = if (@schema.name) then @schema.name else ""
 
-        c = {
-            extend: 'Ext.data.Model',
-            fields: @emitFields()
-        }
-        super("#{@data.name}Model", c)
-
-    emitFields: () ->
-        fields = []
-        (fields.push({ name: c.name }) for c in @fields)
-        return fields
 
 module.exports = ExtModel

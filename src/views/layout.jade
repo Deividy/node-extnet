@@ -10,8 +10,7 @@ html
         each c in components
             -c = c.emit()
             script(type='text/javascript')
-                Ext.define('#{c.name}', #{toString(c.component)})
-
+                Ext.define('#{c.name}', #{c.component})
 
          script(type='text/javascript')
             Ext.onReady(function() {

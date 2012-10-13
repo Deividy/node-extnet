@@ -16,7 +16,6 @@ module.exports = (app) ->
         (requires.push(i.emit()) for i in ExtComponentManager.requires())
 
         res.render('layout', {
-            viewport: schema.name,
             requires: requires.join(', '),
             components: ExtComponentManager.components()
         })
