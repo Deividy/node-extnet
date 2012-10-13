@@ -31,10 +31,14 @@ class ExtComponent
 
     emit: () ->
         @isEmited = true
-        return  { options:@options, component: @component }
+        return  { options: @options, component: @component }
 
 class ExtRequire
     constructor: (@component) ->
+
+    requires: () -> return [ ]
+
+    loader: () -> return [ ]
 
     emit: () ->
         return "'#{@component}'"
