@@ -3,13 +3,17 @@ html
     head
         title Testing..
         link(rel='stylesheet', href='lib/ext-4.1.1a/resources/css/ext-all.css')
-        script(type='text/javascript', src='lib/ext-4.1.1a/ext-debug.js')
+        script(type='text/javascript', src='lib/ext-4.1.1a/ext-all-debug.js')
 
         script(type='text/javascript')
+            Ext.Loader.setPath('Ext', './lib/ext-4.1.1a/src');
+
             Ext.Loader.setConfig({
-                enabled: true
+                enabled: true,
+                disableCaching: true
             });
-            // Model
+
+            // It will be emited dynamic
             Ext.define('UserModel', {
                 extend: 'Ext.data.Model',
                 fields: [
@@ -24,7 +28,7 @@ html
                     }
                 ]
             });
-            // Store
+
             Ext.define('UserStore', {
                 extend: 'Ext.data.JsonStore',
                 model: 'UserModel',
@@ -41,45 +45,24 @@ html
                     }
                 ]
             });
-            // Grid
-            Ext.define('GridTest', {
-                extend: 'Ext.grid.Panel',
-                store: Ext.create('UserStore'),
-                columns: [
-                    {
-                        text: '#',
-                        flex: 0.1,
-                        dataIndex: 'id'
-                    },
-                    {
-                        text: 'Name',
-                        flex: 0.6,
-                        dataIndex: 'name'
-                    },
-                    {
-                        text: 'Login',
-                        flex: 0.3,
-                        dataIndex: 'login'
-                    }
-                ]
-            });
-            Ext.onReady(function() {
-                Ext.require([
+
+            Ext.application({
+                name: 'Dl',
+                appFolder: 'app',
+                autoCreateViewport: false,
+                requires: [
                     'Ext.data.*',
                     'Ext.grid.*',
                     'Ext.container.*'
-                ]);
-                var grid = Ext.create('GridTest');
-                // Viewport
-                Ext.create('Ext.container.Viewport', {
-                    layout: 'border',
-                    items: [
-                        {
-                            region: 'center',
-                            items: grid
-                        }
-                    ]
+                ],
+                controllers: [
+                    'Users'
+                ],
+                launch: function() {
+                    Ext.create('Dl.view.Viewport');
+                }
+            });
 
-                });
-            })
+
+
 
