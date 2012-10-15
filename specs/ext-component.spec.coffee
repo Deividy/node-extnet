@@ -1,15 +1,20 @@
-{ schema, values, model } = require('./values.coffee')
 { ExtComponentManager, ExtComponent } = require('../src/ext-component')
 
-
-cpt = new ExtComponent(model.options, model.component)
-
+cpt = new ExtComponent()
+r = {
+    name: '',
+    type: '',
+    requires: [],
+    autoDefine: true,
+    autoCreate: false
+    component: { }
+}
 describe('Basics tests with ext-component', () ->
-    it('return a simple component config', () ->
-        cpt.emit().should.be.eql(model)
+    it('return a simple empty component config', () ->
+        cpt.emit().should.be.eql(r)
     )
     it('emit a formatted component ready to render', () ->
-        ret = "Ext.define('Dl.#{model.options.type}.#{model.options.name}', #{model.component})"
+        ret = "Ext.define('Dl.#{r.type}.#{r.name}', #{r.component})"
         cpt.render().should.be.eql(ret)
     )
     describe('Basic tests with ExtComponentManager', () ->

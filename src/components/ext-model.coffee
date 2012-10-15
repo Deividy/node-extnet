@@ -4,20 +4,16 @@ ExtJsFormatter = require('../extjs-formatter')
 class ExtModel extends ExtComponent
 
     constructor: (@schema) ->
+        super()
         @name = if (@schema.name) then @schema.name else ""
-        o = {
-            name: @name,
-            type: 'model',
-            requires: ['Ext.data.*'],
-            define: true,
-            create: false
-        }
-        c = {
+        @type = 'model'
+        @requires = [ 'Ext.data.*' ]
+        @autoDefine = true
+        @autoCreate = false
+        @component = {
             extend: 'Ext.data.Model',
             fields: @fields(@schema.columns)
         }
-
-        super(o, c)
 
     fields: (f) ->
         ret = []
@@ -25,5 +21,6 @@ class ExtModel extends ExtComponent
             ret.push({ name: c.name })
 
         return ret
+
 
 module.exports = ExtModel

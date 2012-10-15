@@ -47,13 +47,11 @@ values = [
 ]
 
 model = {
-    options: {
-        name: 'users',
-        type: 'model',
-        requires: [ 'Ext.data.*' ],
-        define: true,
-        create: false
-    },
+    name: 'users',
+    type: 'model',
+    requires: [ 'Ext.data.*' ],
+    autoDefine: true,
+    autoCreate: false,
     component: {
         extend: 'Ext.data.Model',
         fields:[

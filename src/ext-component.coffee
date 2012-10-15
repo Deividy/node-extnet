@@ -14,17 +14,33 @@ class ExtComponentManager
         components = []
 
 class ExtComponent
-    constructor: (@options, @component) ->
+
+    constructor: () ->
+        @name = ""
+        @type = ''
+        @requires = [ ]
+        @autoDefine = true
+        @autoCreate = false
+        @component = { }
         @isRendered = false
+
         ExtComponentManager.register(@)
 
     build: () ->
-        return { options: @options, component: @component }
+        c = {
+            name: @name,
+            type: @type,
+            requires: @requires,
+            autoDefine: @autoDefine,
+            autoCreate: @autoCreate,
+            component: @component
+        }
+        return c
 
     render: () ->
         @isRendered = true
         r = @build()
-        return ExtJsFormatter.c(r)
+        return ExtJsFormatter.c(@)
 
     emit: () ->
         r = @build()

@@ -5,17 +5,15 @@ class ExtJsFormatter
     _name = (type, name) -> "#{ExtConfig.ns}.#{type}.#{name}"
 
     @c: (c) ->
-        opt = c.options
-        cpt = c.component
-        if (opt.define)
-            str = "Ext.define('#{_name(opt.type, opt.name)}', "
-            str += cpt
+        if (c.autoDefine)
+            str = "Ext.define('#{_name(c.type, c.name)}', "
+            str += c.component
             str += ")"
-        else if (opt.create)
-            return "Ext.create('#{_name(opt.type, opt.name)}', #{ctp});"
+        else if (c.autoCreate)
+            return "Ext.create('#{_name(c.type, c.name)}', #{c.component});"
 
-        if (opt.create)
-            str += "Ext.create('#{_name(opt.type, opt.name)}');"
+        if (c.autoCreate)
+            str = "Ext.create('#{_name(c.type, c.name)}');"
 
         return str
 
