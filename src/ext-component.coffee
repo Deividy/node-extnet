@@ -15,8 +15,7 @@ class ExtComponentManager
 
 class ExtComponent
     constructor: (@options, @component) ->
-        isRendered = false
-        @isEmited = false
+        @isRendered = false
         ExtComponentManager.register(@)
 
     build: () ->
@@ -28,7 +27,6 @@ class ExtComponent
         return ExtJsFormatter.c(r)
 
     emit: () ->
-        @isEmited = true
         r = @build()
         return r
 
