@@ -1,6 +1,6 @@
 Ext.define('Dl.view.users.List', {
     extend: 'Ext.grid.Panel',
-    store: Ext.create('UserStore'),
+    store: Ext.create('Dl.store.User'),
     columns: [
         {
             text: '#',

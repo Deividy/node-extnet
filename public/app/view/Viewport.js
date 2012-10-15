@@ -4,7 +4,7 @@ Ext.define('Dl.view.Viewport', {
     items: [
         {
             region: 'center',
-            items: Ext.create('Dl.view.users.List')
+            items: [ Ext.create('Dl.view.users.List') ]
         }
     ]
 

@@ -47,7 +47,8 @@ values = [
 ]
 
 options = {
-    name: 'UserModel',
+    name: 'User',
+    type: 'model',
     requires: [ 'Ext.data.*' ],
     define: true,
     create: false
