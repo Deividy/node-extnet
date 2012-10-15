@@ -46,7 +46,30 @@ values = [
     },
 ]
 
+options = {
+    name: 'UserModel',
+    requires: [ 'Ext.data.*' ],
+    define: true,
+    create: false
+}
+component = {
+    extend: 'Ext.data.Model',
+    fields:[
+        {
+            name: 'id'
+        },
+        {
+            name: 'name'
+        },
+        {
+            name: 'login'
+        }
+    ]
+}
+model = { options: options, component: component }
+
 module.exports = {
     schema: schema
     values: values
+    model: model
 }

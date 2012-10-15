@@ -1,6 +1,7 @@
 class ExtLoader
-    constructor: (@requires) ->
+    constructor: () ->
 
     emit: () ->
+
 
 module.exports = ExtLoader

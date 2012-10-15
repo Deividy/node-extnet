@@ -1,23 +1,16 @@
 _ = require('underscore')
+ExtJsFormatter = require('./extjs-formatter')
 
 class ExtComponentManager
     components = []
-    requires = []
 
     @register: (c) ->
         components.push(c)
         return ExtComponentManager
 
-    @require: (c) ->
-        requires.push(new ExtRequire(c))
-        return ExtComponentManager
-
     @components: () -> components
 
-    @requires: () -> requires
-
     @clean: () ->
-        requires = []
         components = []
 
 class ExtComponent
@@ -25,27 +18,13 @@ class ExtComponent
         @isEmited = false
         ExtComponentManager.register(@)
 
-    require: (c) ->
-        ExtComponentManager.require(c)
-        return @
-
-    emit: () ->
+    emit: (f) ->
         @isEmited = true
-        return  { options: @options, component: @component }
-
-class ExtRequire
-    constructor: (@component) ->
-
-    requires: () -> return [ ]
-
-    loader: () -> return [ ]
-
-    emit: () ->
-        return "'#{@component}'"
-
+        r = { options: @options, component: @component }
+        return ExtJsFormatter.c(r) if (f)
+        return r
 
 module.exports = {
     ExtComponent: ExtComponent
     ExtComponentManager: ExtComponentManager
-    ExtRequire: ExtRequire
 }
