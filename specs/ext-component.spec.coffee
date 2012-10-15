@@ -6,11 +6,11 @@ cpt = new ExtComponent(model.options, model.component)
 
 describe('Basics tests with ext-component', () ->
     it('return a simple component config', () ->
-        model.should.be.eql(cpt.emit())
+        cpt.emit().should.be.eql(model)
     )
     it('emit a formatted component ready to render', () ->
         ret = "Ext.define('Dl.#{model.options.type}.#{model.options.name}', #{model.component})"
-        ret.should.be.eql(cpt.emit(1))
+        cpt.emit(1).should.be.eql(ret)
     )
     describe('Basic tests with ExtComponentManager', () ->
         it('should return true', () ->
