@@ -46,29 +46,29 @@ values = [
     },
 ]
 
-options = {
-    name: 'User',
-    type: 'model',
-    requires: [ 'Ext.data.*' ],
-    define: true,
-    create: false
+model = {
+    options: {
+        name: 'User',
+        type: 'model',
+        requires: [ 'Ext.data.*' ],
+        define: true,
+        create: false
+    },
+    component: {
+        extend: 'Ext.data.Model',
+        fields:[
+            {
+                name: 'id'
+            },
+            {
+                name: 'name'
+            },
+            {
+                name: 'login'
+            }
+        ]
+    }
 }
-component = {
-    extend: 'Ext.data.Model',
-    fields:[
-        {
-            name: 'id'
-        },
-        {
-            name: 'name'
-        },
-        {
-            name: 'login'
-        }
-    ]
-}
-model = { options: options, component: component }
-
 module.exports = {
     schema: schema
     values: values

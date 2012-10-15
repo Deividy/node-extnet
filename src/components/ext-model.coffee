@@ -4,7 +4,6 @@ ExtJsFormatter = require('../extjs-formatter')
 class ExtModel extends ExtComponent
 
     constructor: (@schema) ->
-        @fields = if (@schema.columns) then @schema.columns else []
         @name = if (@schema.name) then @schema.name else ""
 
         o = {
@@ -19,11 +18,11 @@ class ExtModel extends ExtComponent
         }
         super(o, c)
 
-    fields: (fields) ->
+    fields: (f) ->
         ret = []
-        for c of fields
+        for c of f
             ret.push({ name: c.name })
 
-        return ret.join(',')
+        return ret.join(', ')
 
 module.exports = ExtModel

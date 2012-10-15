@@ -21,6 +21,7 @@ class ExtComponent
     emit: (f) ->
         @isEmited = true
         r = { options: @options, component: @component }
+
         return ExtJsFormatter.c(r) if (f)
         return r
 

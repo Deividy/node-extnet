@@ -11,7 +11,6 @@ class ExtJsFormatter
             str = "Ext.define('#{ExtJsFormatter.cn(opt.type, opt.name)}', "
             str += cpt
             str += ")"
-
         else if (opt.create)
             return "Ext.create('#{ExtJsFormatter.cn(opt.type, opt.name)}', #{ctp});"
 
