@@ -10,7 +10,7 @@ describe('Basics tests with ext-component', () ->
     )
     it('emit a formatted component ready to render', () ->
         ret = "Ext.define('Dl.#{model.options.type}.#{model.options.name}', #{model.component})"
-        cpt.emit(1).should.be.eql(ret)
+        cpt.render().should.be.eql(ret)
     )
     describe('Basic tests with ExtComponentManager', () ->
         it('should return true', () ->

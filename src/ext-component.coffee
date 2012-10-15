@@ -15,17 +15,21 @@ class ExtComponentManager
 
 class ExtComponent
     constructor: (@options, @component) ->
+        isRendered = false
         @isEmited = false
         ExtComponentManager.register(@)
 
     build: () ->
         return { options: @options, component: @component }
 
-    emit: (f) ->
+    render: () ->
+        @isRendered = true
+        r = @build()
+        return ExtJsFormatter.c(r)
+
+    emit: () ->
         @isEmited = true
         r = @build()
-
-        return ExtJsFormatter.c(r) if (f)
         return r
 
 module.exports = {
