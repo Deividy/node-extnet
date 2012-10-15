@@ -18,9 +18,12 @@ class ExtComponent
         @isEmited = false
         ExtComponentManager.register(@)
 
+    build: () ->
+        return { options: @options, component: @component }
+
     emit: (f) ->
         @isEmited = true
-        r = { options: @options, component: @component }
+        r = @build()
 
         return ExtJsFormatter.c(r) if (f)
         return r

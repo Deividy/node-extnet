@@ -14,7 +14,7 @@ schema = {
 
         },
         {
-            name: 'login',
+            name: 'name',
             index: 2,
             default: 'NULL',
             isNull: 'NO'
@@ -23,7 +23,7 @@ schema = {
             octLength: 50
         },
         {
-            name: 'pass',
+            name: 'login',
             index: 3,
             default: 'NULL',
             isNull: 'NO'
@@ -48,7 +48,7 @@ values = [
 
 model = {
     options: {
-        name: 'User',
+        name: 'users',
         type: 'model',
         requires: [ 'Ext.data.*' ],
         define: true,
