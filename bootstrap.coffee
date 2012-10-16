@@ -9,6 +9,9 @@ file = new(node_static.Server)(publicDir)
 
 app = express()
 
+ExtLoader = require('./src/ext-loader')
+
+
 class Bootstrap
     _staticFiles = () ->
         (req, res, next) ->
@@ -18,7 +21,7 @@ class Bootstrap
                     if (exists)
                         return file.serve(req, res)
                     else
-                        res.send("Ext.define")
+                        return new ExtLoader(req, res)
                 )
 
     _initRouter = () ->
