@@ -1,5 +1,5 @@
 class ExtConfig
-    @ns = "Dl"
+    @ns = "Xn"
     @path = "lib"
     @version = "4.1.1a"
     @debug = false

@@ -1,6 +1,6 @@
 Ext.define('Dl.store.User', {
     extend: 'Ext.data.JsonStore',
-    model: 'Dl.model.User',
+    model: 'Dl.model.users',
     data: [
         {
             id: 1,

@@ -7,12 +7,12 @@ class ExtJsFormatter
     @c: (c) ->
         cptName = _cptName(c.type, c.name)
         if (c.autoDefine)
-            str = "Ext.define('#!{cptName}', #{JSON.stringify(c.component)});"
+            str = "Ext.define('#{cptName}', #{JSON.stringify(c.component)});"
         else if (c.autoCreate)
-            return "Ext.create('!{cptName}', #{JSON.stringify(c.component)});"
+            return "Ext.create('#{cptName}', #{JSON.stringify(c.component)});"
 
         if (c.autoCreate)
-            str = "Ext.create('!{cptName}');"
+            str = "Ext.create('#{cptName}');"
 
         return str
 

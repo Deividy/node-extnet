@@ -1,4 +1,5 @@
 path = require('path')
+fs = require('fs')
 _ = require('underscore')
 express = require('express')
 node_static = require('node-static')
@@ -9,12 +10,16 @@ file = new(node_static.Server)(publicDir)
 app = express()
 
 class Bootstrap
-    app: app
-
     _staticFiles = () ->
         (req, res, next) ->
             if (req.url.match('.*\\.(jpeg|jpg|png|css|js|gif|favicon|html|xml)'))
-                return file.serve(req, res)
+                f = "#{publicDir}#{req.url.split('?')[0]}"
+                fs.exists(f, (exists) ->
+                    if (exists)
+                        return file.serve(req, res)
+                    else
+                        res.send("Ext.define")
+                )
 
     _initRouter = () ->
         require('./router')(app)
