@@ -1,5 +1,6 @@
 _ = require('underscore')
 ExtJsFormatter = require('./extjs-formatter')
+ExtConfig = require('./ext-config')
 
 class ExtComponentManager
     components = []
@@ -12,6 +13,20 @@ class ExtComponentManager
 
     @clean: () ->
         components = []
+
+    # MAY: Be refactored, not to much consistent
+    @getComponentByUrl: (url) ->
+        us = url.split('?')[0].split('/')
+        appPath = us[1]
+        throw new Error('File not found') if (appPath != ExtConfig.appPath)
+
+        type = us[2]
+        name = us[3].split('.')[0]
+
+        for c in components
+            return c if (c.type == type && c.name == name)
+
+        throw new Error('File not found')
 
 class ExtComponent
 
@@ -39,7 +54,6 @@ class ExtComponent
 
     render: () ->
         @isRendered = true
-        r = @build()
         return ExtJsFormatter.c(@)
 
     emit: () ->

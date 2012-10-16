@@ -2,9 +2,8 @@
 
 class ExtLoader
     constructor: (req, res) ->
-        res.send(ExtComponentManager.components()[0].render())
-
-    emit: () ->
+        c = ExtComponentManager.getComponentByUrl(req.url)
+        return res.send(c.render()) if (c)
 
 
 module.exports = ExtLoader

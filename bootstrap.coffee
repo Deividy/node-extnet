@@ -18,10 +18,8 @@ class Bootstrap
             if (req.url.match('.*\\.(jpeg|jpg|png|css|js|gif|favicon|html|xml)'))
                 f = "#{publicDir}#{req.url.split('?')[0]}"
                 fs.exists(f, (exists) ->
-                    if (exists)
-                        return file.serve(req, res)
-                    else
-                        return new ExtLoader(req, res)
+                    return file.serve(req, res) if (exists)
+                    return new ExtLoader(req, res)
                 )
 
     _initRouter = () ->
@@ -38,11 +36,8 @@ class Bootstrap
             app.use(express.bodyParser())
         )
 
-    initHelpers: () ->
-
     run: () ->
         @initConfig()
-        @initHelpers()
         _initRouter()
 
         app.listen(@port)
