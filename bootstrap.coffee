@@ -11,7 +11,6 @@ app = express()
 
 ExtLoader = require('./src/ext-loader')
 
-
 class Bootstrap
     _staticFiles = () ->
         (req, res, next) ->
@@ -19,7 +18,7 @@ class Bootstrap
                 f = "#{publicDir}#{req.url.split('?')[0]}"
                 fs.exists(f, (exists) ->
                     return file.serve(req, res) if (exists)
-                    return new ExtLoader(req, res)
+                    return new ExtLoader(req, res, next)
                 )
 
     _initRouter = () ->

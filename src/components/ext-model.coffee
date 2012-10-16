@@ -6,7 +6,6 @@ class ExtModel extends ExtComponent
     constructor: (@schema) ->
         super()
         @type = 'model'
-        @requires = [ 'Ext.data.*' ]
 
         @name = if (@schema.name) then @schema.name else ""
         @component = {

@@ -14,7 +14,7 @@ describe('Basics tests with ext-component', () ->
         cpt.emit().should.be.eql(r)
     )
     it('emit a formatted component ready to render', () ->
-        ret = "Ext.define('Dl.#{r.type}.#{r.name}', #{r.component});"
+        ret = "Ext.define('Dl.#{r.type}.#{r.name}', #{JSON.stringify(r.component)});"
         cpt.render().should.be.eql(ret)
     )
     describe('Basic tests with ExtComponentManager', () ->

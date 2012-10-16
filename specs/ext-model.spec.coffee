@@ -8,7 +8,7 @@ describe('Basics tests with ext-model', () ->
         extModel.emit().should.be.eql(model)
     )
     it('emit a formatted model ready to render', () ->
-        ret = "Ext.define('Dl.#{model.type}.#{model.name}', #{model.component});"
+        ret = "Ext.define('Dl.#{model.type}.#{model.name}', #{JSON.stringify(model.component)});"
         extModel.render().should.be.eql(ret)
     )
 )
