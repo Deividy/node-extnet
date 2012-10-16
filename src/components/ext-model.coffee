@@ -5,11 +5,10 @@ class ExtModel extends ExtComponent
 
     constructor: (@schema) ->
         super()
-        @name = if (@schema.name) then @schema.name else ""
         @type = 'model'
         @requires = [ 'Ext.data.*' ]
-        @autoDefine = true
-        @autoCreate = false
+
+        @name = if (@schema.name) then @schema.name else ""
         @component = {
             extend: 'Ext.data.Model',
             fields: @fields(@schema.columns)
