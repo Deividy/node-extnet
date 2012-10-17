@@ -1,0 +1,8 @@
+{
+    "ns": "Dl",
+    "appPath": "app",
+    "libPath": "lib",
+    "libVersion": "4.1.1a",
+    "debug": true,
+    "includeAll": false
+}

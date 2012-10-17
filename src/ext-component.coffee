@@ -1,6 +1,6 @@
 _ = require('underscore')
 ExtJsFormatter = require('./extjs-formatter')
-ExtConfig = require('./ext-config')
+config = require('./ext-config.json')
 
 class ExtComponentManager
     components = []
@@ -37,7 +37,6 @@ class ExtComponent
         r = {
             name: @name,
             type: @type,
-            requires: @requires,
             autoDefine: @autoDefine,
             autoCreate: @autoCreate,
             component: @component

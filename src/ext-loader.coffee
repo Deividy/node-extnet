@@ -6,5 +6,4 @@ class ExtLoader
         return res.send(c.render()) if (c)
         next()
 
-
 module.exports = ExtLoader

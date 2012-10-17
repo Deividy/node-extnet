@@ -49,7 +49,6 @@ values = [
 model = {
     name: 'users',
     type: 'model',
-    requires: [ 'Ext.data.*' ],
     autoDefine: true,
     autoCreate: false,
     component: {

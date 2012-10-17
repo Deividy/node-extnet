@@ -1,8 +1,8 @@
-ExtConfig = require('./ext-config')
+config = require('./ext-config.json')
 _ = require('underscore')
 
 class ExtJsFormatter
-    _cptName = (type, name) -> "#{ExtConfig.ns}.#{type}.#{name}"
+    _cptName = (type, name) -> "#{config.ns}.#{type}.#{name}"
 
     @c: (c) ->
         cptName = _cptName(c.type, c.name)

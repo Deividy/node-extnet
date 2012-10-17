@@ -4,7 +4,6 @@ cpt = new ExtComponent()
 r = {
     name: '',
     type: '',
-    requires: [],
     autoDefine: true,
     autoCreate: false
     component: { }
